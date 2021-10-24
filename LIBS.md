@@ -9,7 +9,8 @@
 
 #### [json_serializable](https://pub.dev/packages/json_serializable)
 Для сериализации/десериализации JSON
-Для работы необходим пакет [json_annotation](https://pub.dev/packages/json_annotation)
+* необходим пакет [json_annotation](https://pub.dev/packages/json_annotation)
+* необходим пакет [build_runner](https://pub.dev/packages/build_runner)
 
 #### [rxdart](https://pub.dev/packages/rxdart)
 Для манипуляции патоками данных
@@ -31,6 +32,9 @@ HTTP клиент для flutter
 
 #### [supercharged](https://pub.dev/packages/supercharged)
 Пакет нужными с exntension методами для коллекций
+
+#### [intl](https://pub.dev/packages/intl)
+Для работы с форматированием даты и времени
 
 ## Ситуативные пакеты
 

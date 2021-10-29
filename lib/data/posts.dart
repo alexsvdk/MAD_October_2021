@@ -12,7 +12,7 @@ class PostsDataNotifyer extends AsyncStateNotifyer<List<Post>> {
   Future<List<Post>> fetchData() async {
     final res = await _api.fetchPosts();
     final data = res.data;
-    if (data != null) return data;
+    if (data != null) return data.map((e) => Post.fromJson(e)).toList();
     throw DioError(requestOptions: res.requestOptions, response: res);
   }
 }

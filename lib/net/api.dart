@@ -6,5 +6,5 @@ class Api {
 
   Api(this._client);
 
-  Future<Response<List<Post>>> fetchPosts() => _client.get<List<Post>>('posts');
+  Future<Response<List>> fetchPosts() => _client.get('posts');
 }

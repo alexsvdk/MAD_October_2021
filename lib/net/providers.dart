@@ -9,6 +9,7 @@ final authInterceptorProvider = Provider((ref) => InterceptorsWrapper(
         RequestInterceptorHandler handler,
       ) {
         //todo auth intercepter
+        handler.next(options);
       },
     ));
 

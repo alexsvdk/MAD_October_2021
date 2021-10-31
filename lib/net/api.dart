@@ -3,6 +3,7 @@ import 'package:ws_start/models/error.dart';
 import 'package:ws_start/models/post.dart';
 import 'package:ws_start/models/register.dart';
 import 'package:ws_start/models/token.dart';
+import 'package:ws_start/models/user.dart';
 
 class Api {
   final Dio _client;
@@ -19,8 +20,8 @@ class Api {
           data: request.toJson());
       statusCode = 200;
     } on DioError catch (e) {
-      if (e.response != null) {
-        e.error = ApiError.fromJson(e.response as Map<String, dynamic>);
+      if (e.response?.data != null) {
+        e.error = ApiError.fromJson(e.response!.data! as Map<String, dynamic>);
         rethrow;
       }
     }
@@ -39,5 +40,45 @@ class Api {
       requestOptions: res?.requestOptions ?? RequestOptions(path: ''),
       response: res,
     );
+  }
+
+  Future<List<UserData>> getUsers() async {
+    try {
+      final res = await _client.get('v1/user', queryParameters: {
+        'limit': 1000,
+        'offset': 0,
+      });
+      res;
+      final useres =
+          (res.data as List).map((e) => UserData.fromJson(e)).toList();
+      return useres;
+    } on DioError catch (e) {
+      if (e.response?.data != null) {
+        e.error = ApiError.fromJson(e.response!.data! as Map<String, dynamic>);
+      }
+      rethrow;
+    }
+  }
+
+  Future<void> likeUser(String userId) async {
+    try {
+      final res = await _client.post('/v1/user/$userId/like');
+    } on DioError catch (e) {
+      if (e.response?.data != null) {
+        e.error = ApiError.fromJson(e.response!.data! as Map<String, dynamic>);
+      }
+      rethrow;
+    }
+  }
+
+  Future<void> dislikeUser(String userId) async {
+    try {
+      final res = await _client.post('/v1/user/$userId/dislike');
+    } on DioError catch (e) {
+      if (e.response?.data != null) {
+        e.error = ApiError.fromJson(e.response!.data! as Map<String, dynamic>);
+      }
+      rethrow;
+    }
   }
 }

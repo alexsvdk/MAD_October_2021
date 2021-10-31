@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:ws_start/colors.dart';
 import 'package:ws_start/ui/start_screen/start_screen.dart';
+import 'package:ws_start/ui/token_screen/token_screen.dart';
 
 class LaunchScreen extends HookWidget {
   const LaunchScreen({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class LaunchScreen extends HookWidget {
     final timer = useEffect(() {
       final timer = Timer(const Duration(seconds: 2), () {
         Navigator.of(context).pushReplacement(
-            CupertinoPageRoute(builder: (_) => const StartScreen()));
+            CupertinoPageRoute(builder: (_) => const TokenScreen()));
       });
       return () {
         if (timer.isActive) timer.cancel();

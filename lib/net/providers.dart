@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ws_start/constants.dart';
+import 'package:ws_start/data/auth.dart';
 import 'package:ws_start/net/api.dart';
 
 final authInterceptorProvider = Provider((ref) => InterceptorsWrapper(
@@ -8,8 +9,11 @@ final authInterceptorProvider = Provider((ref) => InterceptorsWrapper(
         RequestOptions options,
         RequestInterceptorHandler handler,
       ) {
-        //todo auth intercepter
-        handler.next(options);
+        handler.next(options.copyWith(headers: {
+          ...options.headers,
+          if (AuthDataNotifyer.token != null)
+            "Authorization": 'Bearer ${AuthDataNotifyer.token}'
+        }));
       },
     ));
 

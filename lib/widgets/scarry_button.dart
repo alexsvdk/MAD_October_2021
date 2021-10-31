@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ws_start/colors.dart';
 
+import '../constants.dart';
+
 class ScarryButton extends StatelessWidget {
   final String text;
   final VoidCallback onClick;
@@ -20,12 +22,7 @@ class ScarryButton extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          boxShadow: const [
-            BoxShadow(
-              color: ScarryColors.orange,
-              blurRadius: 10,
-            )
-          ],
+          boxShadow: kShadowScarryGlow,
           color: ScarryColors.orange,
         ),
         child: Text(

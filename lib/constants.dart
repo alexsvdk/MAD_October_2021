@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'colors.dart';
+
 class Constants {
   Constants._();
   static const baseUrl = 'http://45.144.179.101/scare-me/api/mobile/';
@@ -28,3 +30,10 @@ const kInputDecoration = InputDecoration(
   enabledBorder: InputBorder.none,
   focusedBorder: InputBorder.none,
 );
+
+const kShadowScarryGlow = [
+  BoxShadow(
+    color: ScarryColors.orange,
+    blurRadius: 10,
+  )
+];

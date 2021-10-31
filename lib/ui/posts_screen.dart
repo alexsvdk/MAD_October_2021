@@ -14,26 +14,35 @@ class PostsScreen extends HookWidget {
   Widget build(BuildContext context) {
     final postsData = useProvider(postsDataProvider);
     return Scaffold(
-      body: Center(
-        child: AsyncValueWrapper<List<Post>>(
-            value: postsData,
-            buildData: (data, context) => ListView.builder(
-                itemCount: data.length,
-                itemBuilder: (context, i) => Container(
-                      margin: const EdgeInsets.all(4),
-                      padding: const EdgeInsets.all(4),
-                      color: Colors.amber,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            data[i].title ?? '',
-                            style: kH3TextStyle,
-                          )
-                        ],
-                      ),
-                    ))),
-      ),
+      body: Builder(builder: (context) {
+        return Center(
+          child: AsyncValueWrapper<List<Post>>(
+              value: postsData,
+              buildData: (data, context) => ListView.builder(
+                  itemCount: data.length,
+                  itemBuilder: (context, i) => GestureDetector(
+                        onTap: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text('Установлено на виджет')));
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
+                          color: Colors.amber,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                data[i].title ?? '',
+                                style: kH3TextStyle,
+                              )
+                            ],
+                          ),
+                        ),
+                      ))),
+        );
+      }),
     );
   }
 }

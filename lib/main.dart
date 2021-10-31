@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ws_start/constants.dart';
+import 'package:ws_start/ui/launch_screen/launch_screen.dart';
 import 'package:ws_start/ui/posts_screen.dart';
 
 void main() {
@@ -12,18 +13,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProviderScope(
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const DefaultTextStyle(
-          style: kBaseTextStyle,
-          child: PostsScreen(),
-        ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: Colors.blue,
       ),
+      builder: (context, child) => ProviderScope(
+          child: DefaultTextStyle(
+              style: kBaseTextStyle, child: child ?? SizedBox.shrink())),
+      home: LaunchScreen(),
     );
   }
 }

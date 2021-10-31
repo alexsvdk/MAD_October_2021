@@ -16,6 +16,7 @@ final authInterceptorProvider = Provider((ref) => InterceptorsWrapper(
 final dioProvider = Provider(
   (ref) => Dio(BaseOptions(
     baseUrl: Constants.baseUrl,
+    contentType: 'application/json',
   ))
     ..interceptors.add(ref.watch(authInterceptorProvider)),
 );

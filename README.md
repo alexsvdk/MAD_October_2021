@@ -1,4 +1,2 @@
-# ws_start
-Стартовый Fltter проект для участия в WS
-## Перед запуском
-После того как вы склонировали проект необходимо выполнить команду `sh tools/codegen.sh`
+## How to run
+drag and drop 'out/Runner.xcarchive' to ios simulator

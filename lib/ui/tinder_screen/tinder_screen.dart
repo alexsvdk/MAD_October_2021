@@ -40,8 +40,8 @@ class TinderScreen extends HookWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _buildBtn('assets/images/rip.png', userActions.dislike),
-                _buildBtn('assets/images/candy.png', userActions.like),
+                buildBtn('assets/images/rip.png', userActions.dislike),
+                buildBtn('assets/images/candy.png', userActions.like),
               ],
             ),
           ]),
@@ -50,7 +50,7 @@ class TinderScreen extends HookWidget {
     );
   }
 
-  Widget _buildBtn(String img, VoidCallback callback) {
+  static Widget buildBtn(String img, VoidCallback callback) {
     return GestureDetector(
       onTap: callback,
       child: Container(

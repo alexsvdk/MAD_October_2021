@@ -18,7 +18,7 @@ class AsyncValueWrapper<T> extends StatelessWidget {
     return value.map(
         data: (data) => buildData(data.value, context),
         loading: (data) => value.data?.value == null
-            ? const CircularProgressIndicator()
+            ? const Center(child: CircularProgressIndicator())
             : buildData(data.data!.value, context),
         error: (AsyncError e) {
           String? errorText = e.toString();

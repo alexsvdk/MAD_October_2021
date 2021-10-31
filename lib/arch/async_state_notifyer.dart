@@ -10,7 +10,7 @@ abstract class AsyncStateNotifyer<T> extends StateNotifier<AsyncValue<T>> {
   Future<T> fetchData();
 
   Future<void> refresh() async {
-    state = const AsyncValue.loading();
+    if (state.data?.value == null) state = const AsyncValue.loading();
     try {
       final data = await fetchData();
       state = AsyncValue.data(data);

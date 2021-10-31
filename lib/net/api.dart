@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:ws_start/models/chats_respose.dart';
 import 'package:ws_start/models/error.dart';
 import 'package:ws_start/models/post.dart';
 import 'package:ws_start/models/register.dart';
@@ -74,6 +75,21 @@ class Api {
   Future<void> dislikeUser(String userId) async {
     try {
       final res = await _client.post('/v1/user/$userId/dislike');
+    } on DioError catch (e) {
+      if (e.response?.data != null) {
+        e.error = ApiError.fromJson(e.response!.data! as Map<String, dynamic>);
+      }
+      rethrow;
+    }
+  }
+
+  Future<List<ChatsResponse>> fetchChats() async {
+    try {
+      final res = await _client.get('/v1/chat');
+      res;
+      final useres =
+          (res.data as List).map((e) => ChatsResponse.fromJson(e)).toList();
+      return useres;
     } on DioError catch (e) {
       if (e.response?.data != null) {
         e.error = ApiError.fromJson(e.response!.data! as Map<String, dynamic>);
